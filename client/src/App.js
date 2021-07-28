@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { Room } from '@material-ui/icons';
 import './App.css';
 
@@ -18,16 +18,30 @@ function App() {
       {...viewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
       onViewportChange={nextViewport => setViewport(nextViewport)}
+      mapStyle='mapbox://styles/sebastiangreen/ckrnp46lb1k5r17o08zyl0eij'
     >
       <Marker 
-        latitude={51.4701} 
-        longitude={-0.9700} 
+        latitude={30.3287} 
+        longitude={35.4423} 
         offsetLeft={-20} 
         offsetTop={-10}
       >
       <Room style={{fontSize:viewport.zoom * 6,
                     color: 'lightcoral'}}/>
       </Marker>
+      <Popup
+          latitude={30.3287}
+          longitude={35.4423}
+          closeButton={true}
+          closeOnClick={false}
+          anchor="bottom" >
+          <div className='popup'>
+            <label>Location</label>
+            <label>Info</label>
+            <label>Rating</label>
+            <label></label>
+          </div>
+        </Popup>
       </ReactMapGL>
     </div>
   );
