@@ -1,5 +1,8 @@
 .App {
   text-align: center;
   font-size: 2em;
-  margin-top: 0.5em;
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
