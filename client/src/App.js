@@ -17,6 +17,7 @@ function App() {
 
   const [pins, setPins] = useState([]);
   const [currentPinId, setCurrentPinId] = useState(null);
+  const [newPin, setNewPin] = useState(null);
 
   const getAllPins = async () => {
     try {
@@ -27,8 +28,18 @@ function App() {
     }
   }
 
-  const handlePopupClick = (id) => {
+  const handlePopupClick = (id, lat, long) => {
     setCurrentPinId(id);
+    setViewport({...viewport, latitude: lat, longitude: long})
+  }
+
+  const handlePinClick = (e) => {
+    // console.log(e);
+    const [longitude,latitude] = e.lngLat;
+    setNewPin({
+      latitude,
+      longitude
+    })
   }
 
   useEffect(() => {
@@ -42,6 +53,7 @@ function App() {
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
       onViewportChange={nextViewport => setViewport(nextViewport)}
       mapStyle='mapbox://styles/sebastiangreen/ckrnp46lb1k5r17o08zyl0eij'
+      onDblClick={handlePinClick}
     > 
 
     {pins.map(pin => (
@@ -55,7 +67,7 @@ function App() {
     <Room style={{fontSize:viewport.zoom * 6,
                   color: pin.username === currentUser ? 'lightcoral' : 'lime',
                   cursor: 'pointer'}}
-          onClick={() => handlePopupClick(pin._id)}/>
+          onClick={() => handlePopupClick(pin._id, pin.latitude, pin.longitude)}/>
     </Marker>
     {pin._id === currentPinId && (
       <Popup
@@ -87,6 +99,37 @@ function App() {
     )}
         </>
         ))}
+        {newPin && (
+        <Popup
+          latitude={newPin.latitude}
+          longitude={newPin.longitude}
+          closeButton={true}
+          closeOnClick={false}
+          anchor="bottom"
+          onClose={()=>setNewPin(null)}
+          >
+            <div>
+              <form>
+                <label>Location</label>
+                <input placeholder='Enter a location'/>
+                <label>Movie</label>
+                <textarea placeholder='This place appeared in...'/>
+                <label>Rating</label>
+                <select>
+                  <option value='1'>1</option>
+                  <option value='2'>2</option>
+                  <option value='3'>3</option>
+                  <option value='4'>4</option>
+                  <option value='5'>5</option>
+                </select>
+                <label>Information</label>
+                <label>Upload image</label>
+                <input type='file'></input>
+                <button className='submitButton' type='submit'>Add Pin</button>
+              </form>
+            </div>
+        </Popup>
+        )}
       </ReactMapGL>
     </div>
   );
