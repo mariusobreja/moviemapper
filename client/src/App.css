@@ -1,6 +1,7 @@
 .App {
   align-items: center;
   display: flex;
+  font-size: 0.9em;
   justify-content: center;
   margin-top: 4em;
 }
@@ -11,13 +12,13 @@
   flex-direction: column;
   height: 250px;
   justify-content: space-around;
-  width: 350px;
+  width: 300px;
 }
 
 label {
   border-bottom: 1px solid coral;
   color: coral;
-  font-size: 0.75em;
+  font-size: 0.9em;
   margin: 3px 0;
   width: max-content;
 }

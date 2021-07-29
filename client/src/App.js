@@ -79,11 +79,11 @@ function App() {
 
     {pins.map(pin => (
     <>
-    <Marker 
+    <Marker
     latitude={pin.latitude} 
     longitude={pin.longitude} 
-    offsetLeft={-20} 
-    offsetTop={-10}
+    offsetLeft={-viewport.zoom * 3} 
+    offsetTop={-viewport.zoom * 6}
     >
     <Room style={{fontSize:viewport.zoom * 6,
                   color: pin.username === currentUser ? 'lightcoral' : 'lime',
@@ -106,11 +106,7 @@ function App() {
             <p>{pin.description}</p>
             <label>Rating</label>
             <div className='stars'>
-              <Star className='star'/>
-              <Star className='star'/>
-              <Star className='star'/>
-              <Star className='star'/>
-              <Star className='star'/>
+              {Array(pin.rating).fill(<Star className='star' />)}
             </div>
             <label>Information</label>
             <span className='username'>Created by <b>{pin.username}</b></span>
