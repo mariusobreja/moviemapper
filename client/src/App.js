@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { Room, Star } from '@material-ui/icons';
 import './App.css';
@@ -14,6 +15,7 @@ function App() {
   });
 
   const [pins, setPins] = useState([]);
+  const [currentPinId, setCurrentPinId] = useState(null);
 
   const getAllPins = async () => {
     try {
@@ -22,6 +24,10 @@ function App() {
     } catch (e) {
       console.log(e)
     }
+  }
+
+  const handlePopupClick = (id) => {
+    setCurrentPinId(id);
   }
 
   useEffect(() => {
@@ -36,8 +42,9 @@ function App() {
       onViewportChange={nextViewport => setViewport(nextViewport)}
       mapStyle='mapbox://styles/sebastiangreen/ckrnp46lb1k5r17o08zyl0eij'
     > 
+
     {pins.map(pin => (
-    
+    <>
     <Marker 
     latitude={pin.latitude} 
     longitude={pin.longitude} 
@@ -45,9 +52,11 @@ function App() {
     offsetTop={-10}
     >
     <Room style={{fontSize:viewport.zoom * 6,
-                    color: 'lightcoral'}}/>
+                    color: 'lightcoral'}}
+          onClick={() => handlePopupClick(pin._id)}/>
     </Marker>
-      /* <Popup
+    {pin._id === currentPinId && (
+      <Popup
           latitude={pin.latitude}
           longitude={pin.longitude}
           closeButton={true}
@@ -68,9 +77,11 @@ function App() {
             </div>
             <label>Information</label>
             <span className='username'>Created by <b>{pin.username}</b></span>
-            <span className='date'>1 hour ago</span>
+            <span className='date'>{moment(pin.createdAt).fromNow()}</span>
           </div>
-        </Popup> </> */
+        </Popup>
+    )}
+        </>
         ))}
       </ReactMapGL>
     </div>
