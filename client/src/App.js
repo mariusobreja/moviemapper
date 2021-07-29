@@ -18,6 +18,9 @@ function App() {
   const [pins, setPins] = useState([]);
   const [currentPinId, setCurrentPinId] = useState(null);
   const [newPin, setNewPin] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [movie, setMovie] = useState(null);
+  const [rating, setRating] = useState(0);
 
   const getAllPins = async () => {
     try {
@@ -31,15 +34,33 @@ function App() {
   const handlePopupClick = (id, lat, long) => {
     setCurrentPinId(id);
     setViewport({...viewport, latitude: lat, longitude: long})
-  }
+  };
 
   const handlePinClick = (e) => {
-    // console.log(e);
     const [longitude,latitude] = e.lngLat;
     setNewPin({
       latitude,
       longitude
-    })
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newEntry = {
+      username: currentUser,
+      title: location,
+      description: movie,
+      rating,
+      latitude: newPin.latitude,
+      longitude: newPin.longitude,
+    };
+    try {
+      const res = await axios.post('http://localhost:3001/routes/pins', newEntry);
+      setPins([...pins, res.data]);
+      setNewPin(null);
+    } catch (e) {
+      console.log(e, 'error here')
+    }
   }
 
   useEffect(() => {
@@ -109,22 +130,22 @@ function App() {
           onClose={()=>setNewPin(null)}
           >
             <div>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <label>Location</label>
-                <input placeholder='Enter a location'/>
+                <input placeholder='Enter a location' onChange={(e)=>setLocation(e.target.value)}/>
                 <label>Movie</label>
-                <textarea placeholder='This place appeared in...'/>
+                <textarea placeholder='This place appeared in...' onChange={(e)=>setMovie(e.target.value)}/>
                 <label>Rating</label>
-                <select>
+                <select onChange={(e)=>setRating(e.target.value)}>
                   <option value='1'>1</option>
                   <option value='2'>2</option>
                   <option value='3'>3</option>
                   <option value='4'>4</option>
                   <option value='5'>5</option>
                 </select>
-                <label>Information</label>
-                <label>Upload image</label>
-                <input type='file'></input>
+                {/* <label>Information</label> */}
+                {/* <label>Upload image</label>
+                <input type='file'></input> */}
                 <button className='submitButton' type='submit'>Add Pin</button>
               </form>
             </div>

@@ -1,23 +1,23 @@
 .App {
-  margin-top: 4em;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 4em;
 }
 
 .popup {
   /* text-align: left; */
-  width: 350px;
-  height: 250px;
   display: flex;
   flex-direction: column;
+  height: 250px;
   justify-content: space-around;
+  width: 350px;
 }
 
 label {
+  border-bottom: 1px solid coral;
   color: coral;
   font-size: 0.75em;
-  border-bottom: 1px solid coral;
   margin: 3px 0;
   width: max-content;
 }
@@ -31,8 +31,28 @@ h4, p {
 }
 
 form {
-  width: 350px;
-  height: 250px;
   display: flex;
   flex-direction: column;
+  height: 250px;
+  justify-content: space-around;
+  width: 350px;
+}
+
+input, textarea {
+  border: none;
+  border-bottom: 1px solid grey;
+}
+
+input::placeholder, textarea::placeholder {
+  font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.submitButton {
+  background-color: coral;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
 }
