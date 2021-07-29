@@ -6,6 +6,7 @@ import { Room, Star } from '@material-ui/icons';
 import './App.css';
 
 function App() {
+  const currentUser = 'Seb';
   const [viewport, setViewport] = useState({
     width: '90vw',
     height: '80vh',
@@ -52,7 +53,8 @@ function App() {
     offsetTop={-10}
     >
     <Room style={{fontSize:viewport.zoom * 6,
-                    color: 'lightcoral'}}
+                  color: pin.username === currentUser ? 'lightcoral' : 'lime',
+                  cursor: 'pointer'}}
           onClick={() => handlePopupClick(pin._id)}/>
     </Marker>
     {pin._id === currentPinId && (
@@ -61,7 +63,9 @@ function App() {
           longitude={pin.longitude}
           closeButton={true}
           closeOnClick={false}
-          anchor="bottom" >
+          anchor="bottom"
+          onClose={()=>setCurrentPinId(null)}
+          >
           <div className='popup'>
             <label>Location</label>
             <h4>{pin.title}</h4>
