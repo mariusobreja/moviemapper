@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const pinRoute = require('./routes/pin');
+const userRoute = require('./routes/users');
 require('dotenv').config();
 const PORT = process.env.PORT;
 const DB_URL = process.env.DB_URL;
@@ -21,7 +22,8 @@ mongoose.connect(`${DB_URL}${DB_NAME}`, {
   })
   .catch((e) => console.log(e));
 
-app.use('/routes/pins', pinRoute)
+app.use('/routes/pins', pinRoute);
+app.use('/routes/users', userRoute);
 
 app.listen(PORT, (e) => {
   if (e) console.log(e);
