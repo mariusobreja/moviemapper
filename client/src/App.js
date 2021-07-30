@@ -11,8 +11,8 @@ function App() {
     width: '90vw',
     height: '80vh',
     latitude: 51.3781,
-    longitude: -2.4360,
-    zoom: 4
+    longitude: 1.4360,
+    zoom: 5
   });
 
   const [pins, setPins] = useState([]);
@@ -69,6 +69,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className='movieMapper'>Movie Mapper</h1>
       <ReactMapGL
       {...viewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
