@@ -6,6 +6,37 @@
   margin-top: 5em;
 }
 
+.button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 8px;
+}
+
+.buttons, .logout {
+  position: absolute;
+  top: 5.2vh;
+  right: 5vw;
+}
+
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
+
+.register {
+  background-color: lightcoral;
+}
+
+.login {
+  background-color: #8b95c9;
+}
+
+.logout {
+  background-color: forestgreen;
+}
+
 .movieMapper {
   color: #dc493a;
   font-family: 'Staatliches', cursive;

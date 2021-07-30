@@ -70,6 +70,12 @@ function App() {
   return (
     <div className="App">
       <h1 className='movieMapper'>Movie Mapper<Room className='titleLogo' style={{fontSize:36.2}}></Room></h1>
+        <button className='button logout'>Logout</button>
+      <div className='buttons'>
+        <button className='button login'>Login</button>
+        <div class="divider"/>
+        <button className='button register'>Register</button>
+        </div>
       <ReactMapGL
       {...viewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
@@ -140,9 +146,9 @@ function App() {
                   <option value='4'>4</option>
                   <option value='5'>5</option>
                 </select>
-                {/* <label>Information</label> */}
-                {/* <label>Upload image</label>
-                <input type='file'></input> */}
+                <label>Information</label>
+                <label>Upload image</label>
+                <input type='file'></input>
                 <button className='submitButton' type='submit'>Add Pin</button>
               </form>
             </div>
