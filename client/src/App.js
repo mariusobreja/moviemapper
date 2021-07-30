@@ -69,12 +69,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className='movieMapper'>Movie Mapper</h1>
+      <h1 className='movieMapper'>Movie Mapper</h1><Room className='titleLogo' style={{fontSize:41}}></Room>
       <ReactMapGL
       {...viewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
       onViewportChange={nextViewport => setViewport(nextViewport)}
-      mapStyle='mapbox://styles/sebastiangreen/ckrnp46lb1k5r17o08zyl0eij'
+      mapStyle='mapbox://styles/sebastiangreen/ckrnp8ur54xux17mswwup4dhk'
       onDblClick={handlePinClick}
     > 
 
