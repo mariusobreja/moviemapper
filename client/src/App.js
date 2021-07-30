@@ -69,7 +69,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className='movieMapper'>Movie Mapper</h1><Room className='titleLogo' style={{fontSize:41}}></Room>
+      <h1 className='movieMapper'>Movie Mapper<Room className='titleLogo' style={{fontSize:36.2}}></Room></h1>
       <ReactMapGL
       {...viewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
@@ -87,9 +87,9 @@ function App() {
     offsetTop={-viewport.zoom * 6}
     >
     <Room style={{fontSize:viewport.zoom * 6,
-                  color: pin.username === currentUser ? 'lightcoral' : 'lime',
+                  color: pin.username === currentUser ? 'lightcoral' : '#8b95c9',
                   cursor: 'pointer'}}
-          onClick={() => handlePopupClick(pin._id, pin.latitude, pin.longitude)}/>
+                  onClick={() => handlePopupClick(pin._id, pin.latitude, pin.longitude)}/>
     </Marker>
     {pin._id === currentPinId && (
       <Popup
