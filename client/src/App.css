@@ -9,20 +9,22 @@
 .button {
   border: none;
   border-radius: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: white;
   padding: 8px;
 }
 
 .buttons, .logout {
+  margin-top: 40px;
   position: absolute;
-  top: 5.2vh;
   right: 5vw;
+  top: 0;
 }
 
 .divider{
-  width:5px;
-  height:auto;
   display:inline-block;
+  height:auto;
+  width:6px;
 }
 
 .register {
