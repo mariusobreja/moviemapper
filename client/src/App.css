@@ -9,8 +9,9 @@
 .button {
   border: none;
   border-radius: 5px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: white;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 8px;
 }
 
@@ -36,7 +37,7 @@
 }
 
 .logout {
-  background-color: forestgreen;
+  background-color: #dc493a;
 }
 
 .movieMapper {

@@ -3,10 +3,10 @@ import axios from 'axios';
 import moment from 'moment';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { Room, Star } from '@material-ui/icons';
+import Register from './components/register/register';
 import './App.css';
 
 function App() {
-  const currentUser = 'Seb';
   const [viewport, setViewport] = useState({
     width: '90vw',
     height: '80vh',
@@ -14,7 +14,8 @@ function App() {
     longitude: 1.4360,
     zoom: 5
   });
-
+  
+  const [currentUser, setCurrentUser] = useState(null);
   const [pins, setPins] = useState([]);
   const [currentPinId, setCurrentPinId] = useState(null);
   const [newPin, setNewPin] = useState(null);
@@ -70,12 +71,13 @@ function App() {
   return (
     <div className="App">
       <h1 className='movieMapper'>Movie Mapper<Room className='titleLogo' style={{fontSize:36.2}}></Room></h1>
-        <button className='button logout'>Logout</button>
-      <div className='buttons'>
+      {currentUser ? (<button className='button logout'>Logout</button>) 
+      : (<div className='buttons'>
         <button className='button login'>Login</button>
         <div class="divider"/>
         <button className='button register'>Register</button>
-        </div>
+        </div>)}
+        <Register />
       <ReactMapGL
       {...viewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
