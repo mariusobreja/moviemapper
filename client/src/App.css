@@ -76,7 +76,7 @@ h4, p {
 form {
   display: flex;
   flex-direction: column;
-  height: 250px;
+  height: 200px;
   justify-content: space-around;
   width: 350px;
 }
@@ -89,6 +89,10 @@ input, textarea {
 input::placeholder, textarea::placeholder {
   font-size: 12px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input:focus, textarea:focus {
+  outline:none;
 }
 
 .submitButton {

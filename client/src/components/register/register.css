@@ -19,6 +19,13 @@
   z-index: 1;
 }
 
+.registerClose {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
 .logo {
   color: #dc493a;
   display: flex;

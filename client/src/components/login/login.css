@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.loginContainer {
+  align-items: center;
+  bottom: 0;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-between;
+  left: 0;
+  margin: auto;
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 350px;
+  z-index: 1;
+}
+
+.loginClose {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.logo {
+  color: #dc493a;
+  display: flex;
+  align-items: center;
+  font-family: Staatliches;
+  font-size: 1.5em;
+}
+
+.loginButton {
+  background-color: tomato;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: Staatliches;
+  font-size: 1.25em;
+  padding: 8px;
+}

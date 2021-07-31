@@ -4,6 +4,7 @@ import moment from 'moment';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { Room, Star } from '@material-ui/icons';
 import Register from './components/register/register';
+import Login from './components/login/login'
 import './App.css';
 
 function App() {
@@ -15,12 +16,15 @@ function App() {
     zoom: 5
   });
   
-  const [currentUser, setCurrentUser] = useState(null);
-  const [pins, setPins] = useState([]);
   const [currentPinId, setCurrentPinId] = useState(null);
-  const [newPin, setNewPin] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [location, setLocation] = useState(null);
   const [movie, setMovie] = useState(null);
+  const myStorage = window.localStorage;
+  const [newPin, setNewPin] = useState(null);
+  const [pins, setPins] = useState([]);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
   const [rating, setRating] = useState(0);
 
   const getAllPins = async () => {
@@ -64,6 +68,11 @@ function App() {
     }
   }
 
+  const handleLogout = () => {
+    myStorage.removeItem('user');
+    setCurrentUser(null);
+  }
+
   useEffect(() => {
     getAllPins()
   },[])
@@ -71,13 +80,17 @@ function App() {
   return (
     <div className="App">
       <h1 className='movieMapper'>Movie Mapper<Room className='titleLogo' style={{fontSize:36.2}}></Room></h1>
-      {currentUser ? (<button className='button logout'>Logout</button>) 
+      {currentUser ? (<button className='button logout' onClick={handleLogout}>Logout</button>) 
       : (<div className='buttons'>
-        <button className='button login'>Login</button>
-        <div class="divider"/>
-        <button className='button register'>Register</button>
+        <button className='button login' onClick={()=>setShowLogin(true)}>Login</button>
+        <div className="divider"/>
+        <button className='button register' onClick={()=>setShowRegister(true)}>Register</button>
         </div>)}
-        <Register />
+        {showRegister && <Register setShowRegister={setShowRegister}/>}
+        {showLogin && <Login 
+        setShowLogin={setShowLogin} 
+        myStorage={myStorage}
+        setCurrentUser={setCurrentUser}/>}
       <ReactMapGL
       {...viewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
@@ -148,9 +161,9 @@ function App() {
                   <option value='4'>4</option>
                   <option value='5'>5</option>
                 </select>
-                <label>Information</label>
+                {/* <label>Information</label>
                 <label>Upload image</label>
-                <input type='file'></input>
+                <input type='file'></input>*/}
                 <button className='submitButton' type='submit'>Add Pin</button>
               </form>
             </div>
