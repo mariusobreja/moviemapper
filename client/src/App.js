@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import moment from 'moment';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-import { Room, Star } from '@material-ui/icons';
+import { Room } from '@material-ui/icons';
 import Register from './components/register/register';
-import Login from './components/login/login'
+import Login from './components/login/login';
+import Info from './components/info/info';
 import './App.css';
 
 function App() {
@@ -17,10 +17,10 @@ function App() {
   });
   
   const [currentPinId, setCurrentPinId] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
+  const myStorage = window.localStorage;
+  const [currentUser, setCurrentUser] = useState(myStorage.getItem('user'));
   const [location, setLocation] = useState(null);
   const [movie, setMovie] = useState(null);
-  const myStorage = window.localStorage;
   const [newPin, setNewPin] = useState(null);
   const [pins, setPins] = useState([]);
   const [showLogin, setShowLogin] = useState(false);
@@ -122,17 +122,7 @@ function App() {
           onClose={()=>setCurrentPinId(null)}
           >
           <div className='popup'>
-            <label>Location</label>
-            <h4>{pin.title}</h4>
-            <label>Movie</label>
-            <p>{pin.description}</p>
-            <label>Rating</label>
-            <div className='stars'>
-              {Array(pin.rating).fill(<Star className='star' />)}
-            </div>
-            <label>Information</label>
-            <span className='username'>Created by <b>{pin.username}</b></span>
-            <span className='date'>{moment(pin.createdAt).fromNow()}</span>
+            <Info pin={pin}/>
           </div>
         </Popup>
     )}
