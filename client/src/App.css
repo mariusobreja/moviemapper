@@ -3,7 +3,7 @@
 .App {
   display: flex;
   justify-content: center;
-  margin-top: 5em;
+  margin-top: 5.5em;
 }
 
 .button {
@@ -11,12 +11,13 @@
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Staatliches;
+  font-size: 1em;
   padding: 8px;
 }
 
 .buttons, .logout {
-  margin-top: 40px;
+  margin-top: 2.7em;
   position: absolute;
   right: 5vw;
   top: 0;
@@ -25,19 +26,31 @@
 .divider{
   display:inline-block;
   height:auto;
-  width:6px;
+  width:7px;
 }
 
 .register {
   background-color: lightcoral;
 }
+.register:hover {
+  background-color: tomato;
+  transform: rotate(5deg);
+}
 
 .login {
   background-color: #8b95c9;
 }
+.login:hover {
+  background-color: #6570a6;
+  transform: rotate(-5deg);
+}
 
 .logout {
   background-color: #dc493a;
+}
+.logout:hover {
+  background-color: #ff5d4d;
+  transform: rotate(-5deg);
 }
 
 .movieMapper {
@@ -46,7 +59,15 @@
   font-size: 2.6em;
   left: 5vw;
   position: absolute;
-  top: 0;
+  top: 0.2em;
+  z-index: 1;
+}
+.movieMapper:hover {
+  color: #eb5142;
+}
+
+.movieMapper::selection {
+  background: violet;
 }
 
 .popup {
@@ -54,13 +75,14 @@
   flex-direction: column;
   height: 310px;
   justify-content: space-around;
-  width: 300px;
+  width: 350px;
 }
 
 label {
   border-bottom: 1px solid coral;
   color: coral;
-  font-size: 0.9em;
+  font-size: 1em;
+  font-family: Staatliches;
   margin: 3px 0;
   width: max-content;
 }
@@ -72,7 +94,7 @@ h4, p {
 form {
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 240px;
   justify-content: space-around;
   width: 350px;
 }
@@ -80,11 +102,14 @@ form {
 input, textarea {
   border: none;
   border-bottom: 1px solid grey;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
 }
 
 input::placeholder, textarea::placeholder {
-  font-size: 12px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: darkgray;
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-size: 1.2em; */
 }
 
 input:focus, textarea:focus {
@@ -97,5 +122,8 @@ input:focus, textarea:focus {
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  font-family: Staatliches;
+  font-size: 1em;
+  margin-top: 5px;
   padding: 5px;
 }
