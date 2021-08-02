@@ -9,11 +9,11 @@ import './App.css';
 
 function App() {
   const [viewport, setViewport] = useState({
-    width: '90vw',
+    width: '85vw',
     height: '80vh',
     latitude: 43.3781,
     longitude: -44.4360,
-    zoom: 2.6
+    zoom: 2.5
   });
   
   const [currentPinId, setCurrentPinId] = useState(null);

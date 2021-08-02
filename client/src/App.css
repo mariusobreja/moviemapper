@@ -19,7 +19,7 @@
 .buttons, .logout {
   margin-top: 2.7em;
   position: absolute;
-  right: 5vw;
+  right: 7.5vw;
   top: 0;
 }
 
@@ -57,7 +57,7 @@
   color: #dc493a;
   font-family: 'Staatliches', cursive;
   font-size: 2.6em;
-  left: 5vw;
+  left: 7.5vw;
   position: absolute;
   top: 0.2em;
   z-index: 1;
