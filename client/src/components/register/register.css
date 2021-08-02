@@ -7,7 +7,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  height: 250px;
+  height: 280px;
   justify-content: space-between;
   left: 0;
   margin: auto;
@@ -43,4 +43,14 @@
   font-family: Staatliches;
   font-size: 1.25em;
   padding: 8px;
+}
+
+.success {
+  color: green;
+  font-size: 12px;
+}
+
+.failure {
+  color: red;
+  font-size: 12px;
 }

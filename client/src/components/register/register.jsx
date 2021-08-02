@@ -1,9 +1,11 @@
 import './register.css'
 import { Room, Close } from '@material-ui/icons'
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import axios from 'axios';
 
 export default function Register({setShowRegister}) {
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const nameRef = useRef();
   const emailRef = useRef();
   const passRef = useRef();
@@ -17,7 +19,8 @@ export default function Register({setShowRegister}) {
     };
     try {
       await axios.post('http://localhost:3001/routes/users/register', newUser)
-      setShowRegister(false);
+      setError(false);
+      setSuccess(true);
     } catch (e) {
       console.log(e)
     }
@@ -34,6 +37,12 @@ export default function Register({setShowRegister}) {
         <input type='email' placeholder='email' ref={emailRef}/>
         <input type='password' placeholder='password' ref={passRef}/>
         <button className='registerButton'>Register</button>
+        {success &&
+        <span className='success'>User successfully created, you may log in!</span>
+      }
+        {error &&
+        <span className='failure'>Something went wrong!</span>
+        }
       </form>
       <Close className='registerClose' onClick={()=>setShowRegister(false)}/>
     </div>
