@@ -23,6 +23,8 @@ export default function Register({setShowRegister}) {
       setSuccess(true);
     } catch (e) {
       console.log(e)
+      setError(true);
+      setSuccess(false);
     }
   }
 

@@ -11,9 +11,9 @@ function App() {
   const [viewport, setViewport] = useState({
     width: '90vw',
     height: '80vh',
-    latitude: 51.3781,
-    longitude: 1.4360,
-    zoom: 5
+    latitude: 43.3781,
+    longitude: -44.4360,
+    zoom: 2.6
   });
   
   const [currentPinId, setCurrentPinId] = useState(null);
@@ -104,10 +104,10 @@ function App() {
     <Marker
     latitude={pin.latitude} 
     longitude={pin.longitude} 
-    offsetLeft={-viewport.zoom * 3} 
-    offsetTop={-viewport.zoom * 6}
+    offsetLeft={-viewport.zoom * 4.25} 
+    offsetTop={-viewport.zoom * 8.5}
     >
-    <Room style={{fontSize:viewport.zoom * 6,
+    <Room style={{fontSize:viewport.zoom * 8.5,
                   color: pin.username === currentUser ? 'lightcoral' : '#8b95c9',
                   cursor: 'pointer'}}
                   onClick={() => handlePopupClick(pin._id, pin.latitude, pin.longitude)}/>

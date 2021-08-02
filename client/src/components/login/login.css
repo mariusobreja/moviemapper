@@ -44,3 +44,8 @@
   font-size: 1.25em;
   padding: 8px;
 }
+
+.failure {
+  color: red;
+  font-size: 12px;
+}

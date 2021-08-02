@@ -1,9 +1,11 @@
 import './login.css'
 import { Room, Close } from '@material-ui/icons'
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import axios from 'axios';
 
 export default function Login({setShowLogin, myStorage, setCurrentUser}) {
+  const [error, setError] = useState(false);
+
   const nameRef = useRef();
   const passRef = useRef();
 
@@ -20,6 +22,7 @@ export default function Login({setShowLogin, myStorage, setCurrentUser}) {
       setShowLogin(false);
     } catch (e) {
       console.log(e)
+      setError(true);
     }
   }
 
@@ -33,6 +36,9 @@ export default function Login({setShowLogin, myStorage, setCurrentUser}) {
         <input type='text' placeholder='username' ref={nameRef}/>
         <input type='password' placeholder='password' ref={passRef}/>
         <button className='loginButton'>Login</button>
+        {error &&
+        <span className='failure'>Something went wrong!</span>
+        }
       </form>
       <Close className='loginClose' onClick={()=>setShowLogin(false)}/>
     </div>
