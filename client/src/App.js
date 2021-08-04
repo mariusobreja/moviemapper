@@ -13,7 +13,7 @@ function App() {
     height: '80vh',
     latitude: 43.3781,
     longitude: -44.4360,
-    zoom: 2.5
+    zoom: 2.7
   });
   
   const [currentPinId, setCurrentPinId] = useState(null);
