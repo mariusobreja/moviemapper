@@ -9,7 +9,6 @@ const DB_URL = process.env.DB_URL;
 const DB_NAME = process.env.DB_NAME;
 const app = express();
 
-
 app.use(cors());
 app.use(express.json());
 

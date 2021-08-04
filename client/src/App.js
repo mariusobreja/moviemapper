@@ -29,7 +29,7 @@ function App() {
 
   const getAllPins = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/routes/pins');
+      const res = await axios.get(process.env.REACT_APP_API);
       setPins(res.data);
     } catch (e) {
       console.log(e)
@@ -60,7 +60,7 @@ function App() {
       longitude: newPin.longitude,
     };
     try {
-      const res = await axios.post('http://localhost:3001/routes/pins', newEntry);
+      const res = await axios.post(process.env.REACT_APP_API, newEntry);
       setPins([...pins, res.data]);
       setNewPin(null);
     } catch (e) {
@@ -151,9 +151,6 @@ function App() {
                   <option value='4'>4</option>
                   <option value='5'>5</option>
                 </select>
-                {/* <label>Information</label>
-                <label>Upload image</label>
-                <input type='file'></input>*/}
                 <button className='submitButton' type='submit'>Add Pin</button>
               </form>
             </div>
