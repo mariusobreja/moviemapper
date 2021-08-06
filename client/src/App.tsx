@@ -7,6 +7,8 @@ import Login from './components/login/login';
 import Info from './components/info/info';
 import './App.css';
 
+
+
 function App() {
   const [viewport, setViewport] = useState({
     width: '85vw',
@@ -25,7 +27,7 @@ function App() {
   const [pins, setPins] = useState([]);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(null);
 
   const getAllPins = async () => {
     try {
@@ -36,20 +38,22 @@ function App() {
     }
   };
 
-  const handlePopupClick = (id, lat, long) => {
+  const handlePopupClick = (id: string, lat:number, long: number) => {
     setCurrentPinId(id);
     setViewport({ ...viewport, latitude: lat, longitude: long });
   };
 
-  const handlePinClick = (e) => {
+  const handlePinClick = (e: {lngLat: number[]}) => {
     const [longitude, latitude] = e.lngLat;
+
+
     setNewPin({
       latitude,
       longitude
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: {preventDefault: Function }) => {
     e.preventDefault();
     const newEntry = {
       username: currentUser,
@@ -112,7 +116,7 @@ function App() {
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
-        onViewportChange={(nextViewport) => setViewport(nextViewport)}
+        onViewportChange={(nextViewport: {width: string, height: string, latitude: number, longitude: number, zoom: number}) => setViewport(nextViewport)}
         mapStyle='mapbox://styles/sebastiangreen/ckrnp8ur54xux17mswwup4dhk'
         onDblClick={handlePinClick}
       >
@@ -146,7 +150,7 @@ function App() {
                 onClose={() => setCurrentPinId(null)}
               >
                 <div className='popup'>
-                  <Info pin={pin} />
+                  <Info pin = {pin} />
                 </div>
               </Popup>
             )}
