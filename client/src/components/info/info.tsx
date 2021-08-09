@@ -31,5 +31,7 @@ export default function Info({pin}: Pin) {
             <span className='username'>Created by <b>{pin.username}</b></span>
             <span className='date'>{moment(pin.createdAt).fromNow()}</span>
             </>
-  )
+
+            )
+
 }
