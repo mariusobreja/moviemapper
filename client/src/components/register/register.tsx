@@ -6,16 +6,16 @@ import axios from 'axios';
 export default function Register({setShowRegister} : {setShowRegister: Function}) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const passRef = useRef(null);
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const passRef = useRef<HTMLInputElement | null>(null);
 
-  const handleSubmit = async (e: {preventDefault: Function }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newUser = {
-      username: nameRef.current.value,
-      email: emailRef.current.value,
-      password: passRef.current.value
+      username: nameRef?.current?.value,
+      email: emailRef?.current?.value,
+      password: passRef?.current?.value
     };
     try {
       await axios.post('http://localhost:3001/routes/users/register', newUser)
