@@ -7,6 +7,8 @@ import Login from './components/login/login';
 import Info from './components/info/info';
 import './App.css';
 
+const REACT_APP_API: string = process.env.REACT_APP_API!
+const REACT_APP_MAPBOX: string = process.env.REACT_APP_MAPBOX!
 
 
 function App() {
@@ -18,20 +20,21 @@ function App() {
     zoom: 2.7
   });
 
-  const [currentPinId, setCurrentPinId] = useState(null);
+  const [currentPinId, setCurrentPinId] = useState('');
   const myStorage = window.localStorage;
   const [currentUser, setCurrentUser] = useState(myStorage.getItem('user'));
-  const [location, setLocation] = useState(null);
-  const [movie, setMovie] = useState(null);
-  const [newPin, setNewPin] = useState(null);
-  const [pins, setPins] = useState([]);
+  const [location, setLocation] = useState('');
+  const [movie, setMovie] = useState('');
+  const [newPin, setNewPin] = useState({latitude: 0, longitude: 0});
+  const defaultPin = {_id: '', username: '', title: '', description: '', rating: 0, latitude: 0, longitude: 0, createdAt: '', updatedAt: '', __v: 0 }
+  const [pins, setPins] = useState([defaultPin]);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState('');
 
   const getAllPins = async () => {
     try {
-      const res = await axios.get(process.env.REACT_APP_API);
+      const res = await axios.get(REACT_APP_API);
       setPins(res.data);
     } catch (e) {
       console.log(e);
@@ -64,9 +67,9 @@ function App() {
       longitude: newPin.longitude
     };
     try {
-      const res = await axios.post(process.env.REACT_APP_API, newEntry);
+      const res = await axios.post(REACT_APP_API, newEntry);
       setPins([...pins, res.data]);
-      setNewPin(null);
+      setNewPin(defaultPin);
     } catch (e) {
       console.log(e, 'error here');
     }
@@ -115,7 +118,7 @@ function App() {
       )}
       <ReactMapGL
         {...viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
+        mapboxApiAccessToken={REACT_APP_MAPBOX}
         onViewportChange={(nextViewport: {width: string, height: string, latitude: number, longitude: number, zoom: number}) => setViewport(nextViewport)}
         mapStyle='mapbox://styles/sebastiangreen/ckrnp8ur54xux17mswwup4dhk'
         onDblClick={handlePinClick}
@@ -147,7 +150,7 @@ function App() {
                 closeButton={true}
                 closeOnClick={false}
                 anchor='bottom'
-                onClose={() => setCurrentPinId(null)}
+                onClose={() => setCurrentPinId('')}
               >
                 <div className='popup'>
                   <Info pin = {pin} />
@@ -163,7 +166,7 @@ function App() {
             closeButton={true}
             closeOnClick={false}
             anchor='bottom'
-            onClose={() => setNewPin(null)}
+            onClose={() => setNewPin(defaultPin)}
           >
             <div>
               <form onSubmit={handleSubmit}>
