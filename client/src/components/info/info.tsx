@@ -25,7 +25,7 @@ export default function Info({pin}: Pin) {
             <p>{pin.description}</p>
     <label>Rating</label>
             <div className='stars'>
-              {Array(pin.rating).fill(<Star className='star' />)}
+              {Array(pin.rating).map( () => <Star className='star' key = {Math.random() * 1000} />)}
             </div>
             <label>Information</label>
             <span className='username'>Created by <b>{pin.username}</b></span>

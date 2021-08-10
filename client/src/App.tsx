@@ -123,8 +123,9 @@ function App() {
         mapStyle='mapbox://styles/sebastiangreen/ckrnp8ur54xux17mswwup4dhk'
         onDblClick={handlePinClick}
       >
-        {pins.map((pin) => (
-          <>
+        {pins.map((pin) => {
+          return (
+          <div key = {pin._id + Math.random()}>
             <Marker
               latitude={pin.latitude}
               longitude={pin.longitude}
@@ -157,8 +158,8 @@ function App() {
                 </div>
               </Popup>
             )}
-          </>
-        ))}
+          </div>
+        )})}
         {newPin && (
           <Popup
             latitude={newPin.latitude}

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import Info from './info';
 
 const Pin = {
@@ -15,6 +15,8 @@ const Pin = {
 };
 
 describe('Info labels', () => {
+  beforeEach(() => (Pin._id = '' + Math.random() * 100));
+
   test('renders pinLocation', () => {
     render(<Info pin={Pin} />);
     const pinLocation = screen.getByText(/location/i);
@@ -41,6 +43,7 @@ describe('Info labels', () => {
 });
 
 describe('Info inputs', () => {
+  beforeEach(() => (Pin._id = '' + Math.random() * 100));
   test('renders pinTitle', () => {
     render(<Info pin={Pin} />);
     const pinTitle = screen.getByText(/titleTest/i);
@@ -61,7 +64,7 @@ describe('Info inputs', () => {
 
   test('renders pinCreatedAt', () => {
     render(<Info pin={Pin} />);
-    const pinCreatedAt = screen.getByText(/8 hours ago/i);
+    const pinCreatedAt = screen.getByText(/ago/i);
     expect(pinCreatedAt).toBeInTheDocument();
   });
 });
